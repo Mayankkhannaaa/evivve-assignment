@@ -193,3 +193,40 @@
 
 - **Login or register to start managing your tasks today!**
 - **Experience the convenience of organized task management and streamline your daily activities.**
+
+
+## Guide
+
+### Setting Up MySQL Server Locally using Docker
+### Prerequisites
+- **Docker installed on your machine.**
+### Step 1: Pull MySQL Docker Image
+
+```shell script
+docker pull mysql:latest
+```
+### Step 2: Create a MySQL Container
+
+```shell script
+docker run -d \
+  --name mysql-container \
+  -e MYSQL_ROOT_PASSWORD=<your_password> \
+  -e MYSQL_DATABASE=<your_database> \
+  -e MYSQL_USER=<your_user> \
+  -e MYSQL_PASSWORD=<your_user_password> \
+  -p 3306:3306 \
+  mysql:latest
+  ```
+- **Replace <your_password>, <your_database>, <your_user>, and <your_user_password> with your desired values.**
+
+- **MYSQL_ROOT_PASSWORD: Set the root password for MySQL.**
+- **MYSQL_DATABASE: Create an initial database.**
+- **MYSQL_USER: Create a non-root user.**
+- **MYSQL_PASSWORD: Set the password for the non-root user.**
+
+### Step 3: Connect to MySQL Container **
+
+```shell script
+mysql -h 127.0.0.1 -P 3306 -u root -p
+```
+- **Enter the password when prompted.**
