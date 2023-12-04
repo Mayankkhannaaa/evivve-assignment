@@ -24,6 +24,10 @@ const getUser = catchAsync(async (req, res) => {
   res.send(user);
 });
 
+const getSelf = catchAsync(async (req, res) => {
+  res.send(req.user);
+});
+
 const updateUser = catchAsync(async (req, res) => {
   const user = await userService.updateUserById(req.params.userId, req.body);
   res.send(user);
@@ -40,4 +44,5 @@ module.exports = {
   getUser,
   updateUser,
   deleteUser,
+  getSelf,
 };

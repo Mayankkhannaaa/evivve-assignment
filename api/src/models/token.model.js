@@ -5,6 +5,12 @@ const sequelize = require('../../config/database');
 const Token = sequelize.define(
   'token',
   {
+    id: {
+      type: DataTypes.UUID,
+      defaultValue: DataTypes.UUIDV4,
+      primaryKey: true,
+      allowNull: false,
+    },
     token: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -13,6 +19,7 @@ const Token = sequelize.define(
     userId: {
       type: DataTypes.UUID,
       allowNull: false,
+      field: 'user_id',
     },
     type: {
       type: DataTypes.STRING,
@@ -29,9 +36,18 @@ const Token = sequelize.define(
       type: DataTypes.BOOLEAN,
       defaultValue: false,
     },
+    createdAt: {
+      type: DataTypes.DATE,
+      field: 'created_at', // Specify the actual column name in the database
+    },
+    updatedAt: {
+      type: DataTypes.DATE,
+      field: 'updated_at', // Specify the actual column name in the database
+    },
   },
   {
     timestamps: true,
+    tableName: 'token',
   }
 );
 

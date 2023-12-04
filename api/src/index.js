@@ -1,4 +1,3 @@
-const mysql = require('mysql2');
 const config = require('./config/config');
 const logger = require('./config/logger');
 const app = require('./app');
@@ -9,13 +8,13 @@ let server;
 sequelize
   .sync()
   .then(() => {
-    console.log('Database synced');
+    logger.info('Database synced');
     server = app.listen(config.port, () => {
       logger.info(`Listening to port ${config.port}`);
     });
   })
   .catch((error) => {
-    console.error('Error syncing database:', error);
+    logger.error('Error syncing database:', error);
   });
 
 const exitHandler = () => {

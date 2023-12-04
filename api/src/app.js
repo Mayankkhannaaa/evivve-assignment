@@ -13,7 +13,7 @@ const { authLimiter } = require('./middlewares/rateLimiter');
 const routes = require('./routes/v1');
 const { errorConverter, errorHandler } = require('./middlewares/error');
 const ApiError = require('./utils/ApiError');
-const { User } = require('./models');
+// const { User, Task } = require('./models');
 
 const app = express();
 
@@ -51,16 +51,27 @@ if (config.env === 'production') {
   app.use('/v1/auth', authLimiter);
 }
 
-app.get('/users', async (req, res) => {
-  try {
-    // Fetch all users from the database
-    const users = await User.findAll();
-    res.json(users);
-  } catch (error) {
-    console.error('Error fetching users:', error);
-    res.status(500).send('Internal Server Error');
-  }
-});
+// app.get('/users', async (req, res) => {
+//   try {
+//     // Fetch all users from the database
+//     const users = await User.findAll();
+//     res.json(users);
+//   } catch (error) {
+//     console.error('Error fetching users:', error);
+//     res.status(500).send('Internal Server Error');
+//   }
+// });
+
+// app.get('/tasks', async (req, res) => {
+//   try {
+//     // Fetch all users from the database
+//     const users = await Task.findAll();
+//     res.json(users);
+//   } catch (error) {
+//     console.error('Error fetching tasks:', error);
+//     res.status(500).send('Internal Server Error');
+//   }
+// });
 
 // v1 api routes
 app.use('/v1', routes);

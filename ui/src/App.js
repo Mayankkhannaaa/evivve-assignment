@@ -1,32 +1,38 @@
 import { useEffect, useState } from 'react';
 import './App.css';
 import { RootProvider } from './context/RootContext';
-import { TaskProvider } from './context/TaskContext';
 import AppRoutes from './routes/Routes';
+import JwtService from './utils/jwt.service';
 
 function App() {
-  const [user, setUser] = useState({ name: 'XYZ' });
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [user, setUser] = useState({});
+
+  const checkUser = () => {
+    const tokens = JwtService.getAccessToken();
+    if (tokens) {
+      setIsLoggedIn(true);
+    }
+  };
 
   const getUser = () => {
-    let randomNumber = Math.random();
-
-    // Make a random choice based on the random number
-    let randomChoice = randomNumber < 0.5 ? 0 : 1;
-
-    setUser(randomChoice === 1 ? { name: 'Mayank' } : {});
+    setUser();
   };
 
   useEffect(() => {
-    getUser();
+    checkUser();
   }, []);
 
   return (
-    <RootProvider currentUser={user} updateUserData={() => getUser()}>
-      <TaskProvider>
-        <div className=''>
-          <AppRoutes />
-        </div>
-      </TaskProvider>
+    <RootProvider
+      currentUser={user}
+      updateUserData={() => getUser()}
+      isLoggedIn={isLoggedIn}
+      setIsLoggedIn={setIsLoggedIn}
+    >
+      <div className=''>
+        <AppRoutes />
+      </div>
     </RootProvider>
   );
 }

@@ -1,14 +1,14 @@
 // models/User.js
 
+const bcrypt = require('bcrypt');
 const { v4: uuidv4 } = require('uuid');
 const { DataTypes } = require('sequelize');
-const sequelize = require('../../config/database'); // Configure your database connection
-// Import the UUID generator
+const sequelize = require('../../config/database');
 
 const User = sequelize.define('users', {
   id: {
     type: DataTypes.UUID,
-    defaultValue: () => uuidv4(), // Use the UUID generator to set a default value
+    defaultValue: () => uuidv4(),
     primaryKey: true,
     allowNull: false,
   },
@@ -27,6 +27,16 @@ const User = sequelize.define('users', {
   },
   // Add other columns as needed
 });
+
+User.beforeCreate(async (user) => {
+  const hashedPassword = await bcrypt.hash(user.password, 10);
+  user.password = hashedPassword;
+});
+
+// Custom method to check if a provided password matches the hashed password in the database
+User.prototype.isPasswordMatch = async function (password) {
+  return await bcrypt.compare(password, this.password);
+};
 
 // Custom method to check if an email is taken
 User.isEmailTaken = async function (email) {

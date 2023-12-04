@@ -1,23 +1,58 @@
 import React from 'react';
+import JwtService from '../utils/jwt.service';
+import { useRootContext } from '../context/RootContext';
+import { useNavigate } from 'react-router-dom';
+import { instance } from '../utils/axiosInstance';
 
 const RegisterPage = () => {
+  const { setIsLoggedIn } = useRootContext();
+  const navigate = useNavigate();
+
+  const handleRegister = (e) => {
+    e.preventDefault();
+    const name = e.target.name.value;
+    const password = e.target.password.value;
+    const email = e.target.email.value;
+
+    const data = {
+      name,
+      password,
+      email,
+    };
+    register(data);
+  };
+
+  const register = async ({ name, password, email }) => {
+    try {
+      const res = await instance.post('/auth/register', {
+        email,
+        password,
+        name,
+      });
+      console.log(res);
+      JwtService.saveToken(res.data.token);
+      setIsLoggedIn(true);
+      navigate('/tasks');
+    } catch (error) {}
+  };
+
   return (
     <div className='flex h-screen bg-black'>
       <div className='m-auto'>
         <div className='bg-white p-10 rounded shadow-md shadow-slate-200 animate__animated animate__zoomInDown animate__delay-1s'>
           <h1 className='text-2xl font-semibold mb-4 text-center'>Register</h1>
-          <form className='py-10 px-12'>
+          <form className='py-10 px-12' onSubmit={handleRegister}>
             <div className='mb-4'>
               <label
                 htmlFor='username'
                 className='text-gray-700 text-sm font-bold'
               >
-                Username:
+                Name:
               </label>
               <input
                 type='text'
-                id='username'
-                name='username'
+                id='name'
+                name='name'
                 className='border p-2  w-full mt-2'
                 placeholder='Enter your username'
               />

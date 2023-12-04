@@ -14,9 +14,17 @@ const useRootContext = () => {
 };
 
 // Provider component
-const RootProvider = ({ children, currentUser, updateUserData }) => {
+const RootProvider = ({
+  children,
+  currentUser,
+  updateUserData,
+  isLoggedIn,
+  setIsLoggedIn,
+}) => {
   return (
-    <RootContext.Provider value={{ currentUser, updateUserData }}>
+    <RootContext.Provider
+      value={{ currentUser, updateUserData, isLoggedIn, setIsLoggedIn }}
+    >
       {children}
     </RootContext.Provider>
   );
