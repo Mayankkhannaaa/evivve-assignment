@@ -1,24 +1,33 @@
-import logo from './logo.svg';
+import { useEffect, useState } from 'react';
 import './App.css';
+import { RootProvider } from './context/RootContext';
+import { TaskProvider } from './context/TaskContext';
+import AppRoutes from './routes/Routes';
 
 function App() {
+  const [user, setUser] = useState({ name: 'XYZ' });
+
+  const getUser = () => {
+    let randomNumber = Math.random();
+
+    // Make a random choice based on the random number
+    let randomChoice = randomNumber < 0.5 ? 0 : 1;
+
+    setUser(randomChoice === 1 ? { name: 'Mayank' } : {});
+  };
+
+  useEffect(() => {
+    getUser();
+  }, []);
+
   return (
-    <div className='App'>
-      <header className='App-header'>
-        <img src={logo} className='App-logo' alt='logo' />
-        <p className='text-xl'>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className='App-link'
-          href='https://reactjs.org'
-          target='_blank'
-          rel='noopener noreferrer'
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <RootProvider currentUser={user} updateUserData={() => getUser()}>
+      <TaskProvider>
+        <div className=''>
+          <AppRoutes />
+        </div>
+      </TaskProvider>
+    </RootProvider>
   );
 }
 
