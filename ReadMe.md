@@ -441,24 +441,24 @@ npm run start
 
 ### Frontend
 
-#### Tailwind CSS
+### Tailwind CSS
 
 [Tailwind CSS](https://tailwindcss.com/) is a utility-first CSS framework that provides low-level utility classes to build designs directly in your markup. It promotes a highly customizable and responsive design approach.
 
-#### Moment.js
+### Moment.js
 
 [Moment.js](https://momentjs.com/) is a JavaScript library for parsing, validating, manipulating, and formatting dates. It simplifies date handling in your application, making it easier to work with date and time.
 
 ### Backend
 
-#### bcrypt
+### bcrypt
 
 [Bcrypt](https://www.npmjs.com/package/bcrypt) is a password hashing library for Node.js. It securely hashes passwords to protect user credentials. It's commonly used for storing and comparing hashed passwords in authentication systems.
 
-#### Passport
+### Passport
 
 [Passport](http://www.passportjs.org/) is authentication middleware for Node.js. It is flexible and modular, supporting various authentication strategies. Passport simplifies the process of integrating user authentication into your application.
 
-#### JWT
+### JWT
 
 [JSON Web Token (JWT)](https://jwt.io/) is a compact, URL-safe means of representing claims to be transferred between two parties. It's commonly used for creating authentication tokens. JWTs can encode user information and be securely transmitted between the client and server.
