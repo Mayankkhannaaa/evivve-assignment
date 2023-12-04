@@ -7,7 +7,7 @@
 #### Login API
 
 - **Description:** This API allows users to log in and obtain authentication tokens.
-- **Endpoint:** `POST /api/auth/login`
+- **Endpoint:** `POST /v1/auth/login`
 - **Request:**
   - **Headers:**
     - Content-Type: application/json
@@ -64,7 +64,7 @@
 #### Register API
 
 - **Description:** This API allows users to register and obtain authentication tokens.
-- **Endpoint:** `POST /api/auth/register`
+- **Endpoint:** `POST /v1/auth/register`
 - **Request:**
   - **Headers:**
     - Content-Type: application/json
@@ -116,7 +116,7 @@
 #### Create Task API
 
 - **Description:** This API allows users to create a new task.
-- **Endpoint:** `POST /api/tasks/create`
+- **Endpoint:** `POST /v1/tasks/create`
 - **Request:**
   - **Headers:**
     - Authorization: Bearer your_access_token
@@ -170,7 +170,7 @@
 #### Get Tasks API
 
 - **Description:** This API allows users to retrieve their tasks.
-- **Endpoint:** `GET /api/tasks/get-tasks`
+- **Endpoint:** `GET /v1/tasks/get-tasks`
 - **Request:**
   - **Headers:**
     - Authorization: Bearer your_access_token
@@ -216,7 +216,7 @@
 #### Update Task API
 
 - **Description:** This API allows users to update a specific task.
-- **Endpoint:** `POST /api/tasks/update/:taskId`
+- **Endpoint:** `POST /v1/tasks/update/:taskId`
 - **Request:**
   - **Headers:**
     - Authorization: Bearer your_access_token
@@ -280,7 +280,7 @@
 #### Delete Task API
 
 - **Description:** This API allows users to delete a specific task.
-- **Endpoint:** `DELETE /api/tasks/:taskId`
+- **Endpoint:** `DELETE /v1/tasks/:taskId`
 - **Request:**
   - **Headers:**
     - Authorization: Bearer your_access_token
