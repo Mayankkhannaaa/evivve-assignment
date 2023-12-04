@@ -110,3 +110,86 @@
         "message": "Internal server error"
       }
       ```
+
+## Features
+
+### 1. User Authentication
+
+#### 1.1 Login
+
+- **Description:** This feature allows registered users to log in securely.
+- **Benefits:**
+  - Ensure the security of your account.
+  - Access personalized features based on your user profile.
+- **How to Use:**
+  - Visit the login page.
+  - Enter your registered email address and password.
+  - Click the "Login" button.
+- **Security Note:**
+  - Always use a strong, unique password for enhanced account security.
+
+#### 1.2 Register
+
+- **Description:** This feature enables new users to create an account on our platform.
+- **Benefits:**
+  - Unlock access to exclusive features.
+  - Seamlessly manage and organize your tasks.
+- **How to Use:**
+  - Navigate to the registration page.
+  - Fill in the required details, including your name, email, and password.
+  - Click the "Register" button to create your account.
+- **Security Note:**
+  - Ensure your password meets the security standards for a safe registration process.
+
+### 2. Task Management
+
+#### 2.1 Add Task
+
+- **Description:** Users can effortlessly add new tasks to keep track of their activities.
+- **Benefits:**
+  - Stay organized by categorizing tasks.
+  - Set reminders for important deadlines.
+- **How to Use:**
+  - Access the task management dashboard.
+  - Click the "Add Task" button.
+  - Enter a task description and select a status (e.g., pending, completed, in progress).
+  - Save the task to start tracking it.
+
+#### 2.2 Update Task
+
+- **Description:** This feature allows users to modify existing tasks to reflect changes.
+- **Benefits:**
+  - Adapt tasks based on evolving priorities.
+  - Edit task details or update its status as needed.
+- **How to Use:**
+  - Navigate to the task management dashboard.
+  - Locate the task you want to update.
+  - Click the "Edit" button and modify the task details.
+  - Save the changes to update the task.
+
+#### 2.3 Delete Task
+
+- **Description:** Users can remove tasks that are no longer relevant or completed.
+- **Benefits:**
+  - Maintain a clutter-free task list.
+  - Focus on current and upcoming tasks.
+- **How to Use:**
+  - Access the task management dashboard.
+  - Locate the task you want to delete.
+  - Click the "Delete" button to permanently remove the task.
+
+#### 2.4 Editable Task Details
+
+- **Description:** Users have the flexibility to edit task descriptions and statuses.
+- **Benefits:**
+  - Ensure task details are accurate and up-to-date.
+  - Easily adapt to changes in project requirements.
+- **How to Use:**
+  - Click on the task you wish to edit.
+  - Modify the task description or select a different status.
+  - Save the changes to update the task details.
+
+## Get Started
+
+- **Login or register to start managing your tasks today!**
+- **Experience the convenience of organized task management and streamline your daily activities.**
