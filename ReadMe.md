@@ -111,6 +111,211 @@
       }
       ```
 
+### Task Management APIs
+
+#### Create Task API
+
+- **Description:** This API allows users to create a new task.
+- **Endpoint:** `POST /api/tasks/create`
+- **Request:**
+  - **Headers:**
+    - Authorization: Bearer your_access_token
+    - Content-Type: application/json
+  - **Body:**
+    ```json
+    {
+      "description": "Complete task assignment",
+      "status": "pending"
+    }
+    ```
+- **Response:**
+  - **Status Code:** 201 Created
+  - **Body:**
+    ```json
+    {
+      "id": "task_id",
+      "description": "Complete task assignment",
+      "status": "pending",
+      "userId": "user_id",
+      "createdAt": "2023-01-01T00:00:00.000Z",
+      "updatedAt": "2023-01-01T00:00:00.000Z"
+    }
+    ```
+
+- **Error Handling:**
+  - **Status Code:** 400 Bad Request
+    - **Body:**
+      ```json
+      {
+        "message": "Validation error message"
+      }
+      ```
+
+  - **Status Code:** 401 Unauthorized
+    - **Body:**
+      ```json
+      {
+        "message": "Unauthorized: Invalid or expired token"
+      }
+      ```
+
+  - **Status Code:** 500 Internal Server Error
+    - **Body:**
+      ```json
+      {
+        "message": "Internal server error"
+      }
+      ```
+
+#### Get Tasks API
+
+- **Description:** This API allows users to retrieve their tasks.
+- **Endpoint:** `GET /api/tasks/get-tasks`
+- **Request:**
+  - **Headers:**
+    - Authorization: Bearer your_access_token
+  - **Query Parameters:**
+    - status: (Optional) Filter tasks by status (e.g., 'pending', 'completed', 'in_progress')
+
+- **Response:**
+  - **Status Code:** 200 OK
+  - **Body:**
+    ```json
+    {
+      "tasks": [
+        {
+          "id": "task_id",
+          "description": "Complete task assignment",
+          "status": "pending",
+          "userId": "user_id",
+          "createdAt": "2023-01-01T00:00:00.000Z",
+          "updatedAt": "2023-01-01T00:00:00.000Z"
+        },
+        // Additional tasks
+      ]
+    }
+    ```
+
+- **Error Handling:**
+  - **Status Code:** 401 Unauthorized
+    - **Body:**
+      ```json
+      {
+        "message": "Unauthorized: Invalid or expired token"
+      }
+      ```
+
+  - **Status Code:** 500 Internal Server Error
+    - **Body:**
+      ```json
+      {
+        "message": "Internal server error"
+      }
+      ```
+
+#### Update Task API
+
+- **Description:** This API allows users to update a specific task.
+- **Endpoint:** `POST /api/tasks/update/:taskId`
+- **Request:**
+  - **Headers:**
+    - Authorization: Bearer your_access_token
+    - Content-Type: application/json
+  - **Params:**
+    - taskId: ID of the task to be updated
+  - **Body:**
+    ```json
+    {
+      "description": "Updated task assignment",
+      "status": "in_progress"
+    }
+    ```
+- **Response:**
+  - **Status Code:** 200 OK
+  - **Body:**
+    ```json
+    {
+      "id": "task_id",
+      "description": "Updated task assignment",
+      "status": "in_progress",
+      "userId": "user_id",
+      "createdAt": "2023-01-01T00:00:00.000Z",
+      "updatedAt": "2023-01-02T00:00:00.000Z"
+    }
+    ```
+
+- **Error Handling:**
+  - **Status Code:** 400 Bad Request
+    - **Body:**
+      ```json
+      {
+        "message": "Validation error message"
+      }
+      ```
+
+  - **Status Code:** 401 Unauthorized
+    - **Body:**
+      ```json
+      {
+        "message": "Unauthorized: Invalid or expired token"
+      }
+      ```
+
+  - **Status Code:** 404 Not Found
+    - **Body:**
+      ```json
+      {
+        "message": "Task not found"
+      }
+      ```
+
+  - **Status Code:** 500 Internal Server Error
+    - **Body:**
+      ```json
+      {
+        "message": "Internal server error"
+      }
+      ```
+
+#### Delete Task API
+
+- **Description:** This API allows users to delete a specific task.
+- **Endpoint:** `DELETE /api/tasks/:taskId`
+- **Request:**
+  - **Headers:**
+    - Authorization: Bearer your_access_token
+  - **Params:**
+    - taskId: ID of the task to be deleted
+
+- **Response:**
+  - **Status Code:** 204 No Content
+
+- **Error Handling:**
+  - **Status Code:** 401 Unauthorized
+    - **Body:**
+      ```json
+      {
+        "message": "Unauthorized: Invalid or expired token"
+      }
+      ```
+
+  - **Status Code:** 404 Not Found
+    - **Body:**
+      ```json
+      {
+        "message": "Task not found"
+      }
+      ```
+
+  - **Status Code:** 500 Internal Server Error
+    - **Body:**
+      ```json
+      {
+        "message": "Internal server error"
+      }
+      ```
+
+
 ## Features
 
 ### 1. User Authentication
@@ -200,6 +405,8 @@
 ### Setting Up MySQL Server Locally using Docker
 ### Prerequisites
 - **Docker installed on your machine.**
+- ** Node installed on your machine **
+
 ### Step 1: Pull MySQL Docker Image
 
 ```shell script
@@ -208,25 +415,50 @@ docker pull mysql:latest
 ### Step 2: Create a MySQL Container
 
 ```shell script
-docker run -d \
-  --name mysql-container \
-  -e MYSQL_ROOT_PASSWORD=<your_password> \
-  -e MYSQL_DATABASE=<your_database> \
-  -e MYSQL_USER=<your_user> \
-  -e MYSQL_PASSWORD=<your_user_password> \
-  -p 3306:3306 \
-  mysql:latest
+docker run -d --name evivve -e MYSQL_ROOT_PASSWORD=password -e MYSQL_DATABASE=evivve -p 3306:3306 mysql
   ```
-- **Replace <your_password>, <your_database>, <your_user>, and <your_user_password> with your desired values.**
 
-- **MYSQL_ROOT_PASSWORD: Set the root password for MySQL.**
-- **MYSQL_DATABASE: Create an initial database.**
-- **MYSQL_USER: Create a non-root user.**
-- **MYSQL_PASSWORD: Set the password for the non-root user.**
+### Step 3: Navigate to API directory
 
-### Step 3: Connect to MySQL Container **
-
+- **Start Migration**
 ```shell script
-mysql -h 127.0.0.1 -P 3306 -u root -p
+npx knex migrate:latest
 ```
-- **Enter the password when prompted.**
+
+- **Run Express Server**
+```shell script
+  npm run dev
+```
+
+### Step 4: Navigate to UI directory in new Terminal
+
+- **Start the Web App**
+```shell script
+npm run start
+```
+
+### Libraries
+
+### Frontend
+
+#### Tailwind CSS
+
+[Tailwind CSS](https://tailwindcss.com/) is a utility-first CSS framework that provides low-level utility classes to build designs directly in your markup. It promotes a highly customizable and responsive design approach.
+
+#### Moment.js
+
+[Moment.js](https://momentjs.com/) is a JavaScript library for parsing, validating, manipulating, and formatting dates. It simplifies date handling in your application, making it easier to work with date and time.
+
+### Backend
+
+#### bcrypt
+
+[Bcrypt](https://www.npmjs.com/package/bcrypt) is a password hashing library for Node.js. It securely hashes passwords to protect user credentials. It's commonly used for storing and comparing hashed passwords in authentication systems.
+
+#### Passport
+
+[Passport](http://www.passportjs.org/) is authentication middleware for Node.js. It is flexible and modular, supporting various authentication strategies. Passport simplifies the process of integrating user authentication into your application.
+
+#### JWT
+
+[JSON Web Token (JWT)](https://jwt.io/) is a compact, URL-safe means of representing claims to be transferred between two parties. It's commonly used for creating authentication tokens. JWTs can encode user information and be securely transmitted between the client and server.
