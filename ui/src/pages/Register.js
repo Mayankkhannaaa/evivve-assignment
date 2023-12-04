@@ -40,8 +40,10 @@ const RegisterPage = () => {
     <div className='flex h-screen bg-black'>
       <div className='m-auto'>
         <div className='bg-white p-10 rounded shadow-md shadow-slate-200 animate__animated animate__zoomInDown animate__delay-1s'>
-          <h1 className='text-2xl font-semibold mb-4 text-center'>Register</h1>
-          <form className='py-10 px-12' onSubmit={handleRegister}>
+          <h1 className='text-2xl font-semibold mb-4 text-center text-black'>
+            Register
+          </h1>
+          <form className='py-10 px-2' onSubmit={handleRegister}>
             <div className='mb-4'>
               <label
                 htmlFor='username'
@@ -53,7 +55,7 @@ const RegisterPage = () => {
                 type='text'
                 id='name'
                 name='name'
-                className='border p-2  w-full mt-2'
+                className='border p-2  w-full mt-2 text-black'
                 placeholder='Enter your username'
               />
             </div>
@@ -68,7 +70,7 @@ const RegisterPage = () => {
                 type='email'
                 id='email'
                 name='email'
-                className='border p-2 w-full mt-2'
+                className='border p-2 w-full mt-2 text-black'
                 placeholder='Enter your email'
               />
             </div>
@@ -83,16 +85,31 @@ const RegisterPage = () => {
                 type='password'
                 id='password'
                 name='password'
-                className='border p-2 w-full mt-2'
+                className='border p-2 w-full mt-2 text-black'
                 placeholder='Enter your password'
               />
             </div>
-            <button
-              type='submit'
-              className='bg-blue-500 text-white p-2 px-4 rounded mx-auto flex mt-8'
-            >
-              Register
-            </button>
+            <div className=''>
+              <button
+                type='submit'
+                className='bg-blue-500 text-white p-2 px-4 rounded mx-auto flex mt-8'
+              >
+                Register
+              </button>
+              <div className='flex mt-4 items-center justify-center'>
+                <p className='text-black text-center'>
+                  Already have an account?
+                </p>
+                <button
+                  onClick={() => {
+                    navigate('/login');
+                  }}
+                  className='ml-2 text-blue-500 underline'
+                >
+                  Login
+                </button>
+              </div>
+            </div>
           </form>
         </div>
       </div>

@@ -16,7 +16,11 @@ const getTasks = catchAsync(async (req, res) => {
   const userId = req.user.id;
 
   const filter = { ...pick(req.query, ['status']), userId };
-  const options = pick(req.query, ['sortBy', 'limit', 'page']);
+  // const options = pick(req.query, ['sortBy', 'limit', 'page']);
+  const options = {
+    ...pick(req.query, ['limit', 'page']),
+    order: [['createdAt', 'DESC']], // Add this line for sorting by createdAt in DESC order
+  };
   const result = await taskService.queryTasks(filter, options);
   res.send(result);
 });

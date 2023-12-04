@@ -3,7 +3,7 @@
 exports.up = function (knex) {
   return knex.schema.createTable('tasks', function (table) {
     table.uuid('id').primary().notNullable();
-    table.string('description').notNullable();
+    table.text('description').notNullable();
     table.enum('status', ['pending', 'completed', 'in_progress']).notNullable(); // Define your status options
     table.string('user_id').notNullable();
     table.timestamps(true, true);

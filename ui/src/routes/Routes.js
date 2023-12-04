@@ -11,12 +11,11 @@ export default function AppRoutes() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route exact path='/' element={<h1>hELLO</h1>} />
         {isLoggedIn ? (
-          <Route exact path='/tasks' element={<TaskPage />} />
+          <Route path='/*' element={<TaskPage />} />
         ) : (
           <>
-            <Route exact path='/login' element={<LoginPage />} />
+            <Route path='/*' element={<LoginPage />} />
             <Route exact path='/register' element={<RegisterPage />} />
           </>
         )}

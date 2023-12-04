@@ -2,5 +2,5 @@
 import { instance } from './axiosInstance';
 
 export const getSelf = () => {
-  return instance.get('/users/getSelf');
+  return instance.get('/users/self');
 };
