@@ -1,4 +1,3 @@
-// src/components/TaskPage.js
 import React, { useEffect, useState } from 'react';
 import TaskServce from '../utils/task.service';
 import TaskComponent from '../components/TaskComponent';
@@ -19,8 +18,8 @@ const TaskPage = () => {
         description: taskText,
         status: 'in_progress',
       });
-      setTaskList([res.data, ...taskList]);
 
+      setTaskList((prevTaskList) => [res.data, ...prevTaskList]);
       setEditTaskId(null);
 
       setTaskText('');
@@ -39,6 +38,7 @@ const TaskPage = () => {
   const deleteTask = async (id) => {
     try {
       await TaskServce.deleteTaskById(id);
+
       setTaskList((prevTaskList) =>
         prevTaskList.filter((task) => task.id !== id)
       );
@@ -59,13 +59,28 @@ const TaskPage = () => {
         description: taskText,
         status: status,
       });
-      setTaskList((prevTaskList) =>
-        prevTaskList.map((task) =>
-          task.id === editTaskId
-            ? { ...task, ...{ description: taskText, status: status } }
-            : task
-        )
-      );
+
+      setTaskList((prevTaskList) => {
+        // Create a new array to avoid modifying the original array
+        const updatedTaskList = [...prevTaskList];
+
+        // Find the index of the task with the specified editTaskId
+        const index = updatedTaskList.findIndex(
+          (task) => task.id === editTaskId
+        );
+
+        // Check if the task with the specified editTaskId exists
+        if (index !== -1) {
+          // Update the specific task
+          updatedTaskList[index] = {
+            ...updatedTaskList[index],
+            description: taskText,
+            status: status,
+          };
+        }
+
+        return updatedTaskList;
+      });
       setEditTaskId(null);
 
       setTaskText('');

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import moment from 'moment';
 import ProgressDisplay from './ProgressDisplay';
 
@@ -9,8 +9,8 @@ const TaskComponent = ({
   editTaskId,
   handleEditState,
 }) => {
-  const [description, setDescription] = useState(task.description);
-  const [status, setStatus] = useState(task.status);
+  const [description, setDescription] = useState('');
+  const [status, setStatus] = useState('');
 
   const statusColor = {
     in_progress: 'yellow',
@@ -28,6 +28,11 @@ const TaskComponent = ({
     // Implement logic to handle color selection
     setStatus(colorStatus[color]);
   };
+
+  useEffect(() => {
+    setStatus(task.status);
+    setDescription(task.description);
+  }, [task]);
 
   return (
     <li

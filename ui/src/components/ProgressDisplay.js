@@ -9,7 +9,7 @@ const ProgressDisplay = ({ status }) => {
     case 'in_progress':
       return <div className='bg-yellow-500 rounded-full h-2 w-2' />;
     default:
-      <div className='bg-red-500 rounded-full h-2 w-2' />;
+      <div className='bg-yellow-500 rounded-full h-2 w-2' />;
   }
 };
 
