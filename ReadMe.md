@@ -314,6 +314,10 @@
         "message": "Internal server error"
       }
       ```
+## UI
+<img width="1709" alt="Screenshot 2023-12-05 at 11 23 10 AM" src="https://github.com/Mayankkhannaaa/evivve-assignment/assets/55352124/f0358c9b-c506-43fa-9ff9-70f5048f025f">
+<img width="1710" alt="Screenshot 2023-12-05 at 11 23 21 AM" src="https://github.com/Mayankkhannaaa/evivve-assignment/assets/55352124/67eb82ed-a59b-4508-b562-5183feee2d86">
+<img width="1710" alt="Screenshot 2023-12-05 at 11 23 30 AM" src="https://github.com/Mayankkhannaaa/evivve-assignment/assets/55352124/6ffe1116-24c5-4848-a67d-67485d9eb5a2">
 
 
 ## Features
