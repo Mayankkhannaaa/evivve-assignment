@@ -438,7 +438,7 @@ npx knex migrate:latest
 
 - **Start the Web App**
 ```shell script
-npm run start
+docker run -p 3000:3000 -v $(pwd):/ui -w /ui node:14 npm start
 ```
 
 ## Libraries
