@@ -33,7 +33,9 @@ const RegisterPage = () => {
       JwtService.saveToken(res.data.token);
       setIsLoggedIn(true);
       navigate('/tasks');
-    } catch (error) {}
+    } catch (error) {
+      alert('Something went wrong, please try again!');
+    }
   };
 
   return (

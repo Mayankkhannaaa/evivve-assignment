@@ -1,6 +1,6 @@
 // models/User.js
 
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 const { v4: uuidv4 } = require('uuid');
 const { DataTypes } = require('sequelize');
 const sequelize = require('../../config/database');

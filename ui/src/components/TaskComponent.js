@@ -9,7 +9,6 @@ const TaskComponent = ({
   editTaskId,
   handleEditState,
 }) => {
-  const [colorOptionsVisible, setColorOptionsVisible] = useState(false);
   const [description, setDescription] = useState(task.description);
   const [status, setStatus] = useState(task.status);
 

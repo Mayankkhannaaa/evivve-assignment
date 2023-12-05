@@ -31,7 +31,10 @@ const LoginPage = () => {
       setIsLoggedIn(true);
       // after login navigate to /tasks
       navigate('/tasks');
-    } catch (error) {}
+    } catch (error) {
+      console.log(error);
+      alert('Please try with correct credentials!');
+    }
   };
 
   return (
