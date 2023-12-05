@@ -11,7 +11,7 @@ COPY package*.json ./
 RUN npm install
 
 # Expose the port the app runs on
-EXPOSE 8081
+EXPOSE 8080
 
 # Define the command to run your app
 CMD ["npm", "start"]
